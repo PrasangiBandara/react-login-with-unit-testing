@@ -5,7 +5,7 @@ import "./Login.css";
 const Home = () => {
   return (
     <div className="container">
-      <h1>Welcome Prasangi</h1>
+      <h1>Welcome User :)</h1>
     </div>
   );
 };
