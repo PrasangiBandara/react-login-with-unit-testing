@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import Login from "../components/Login";
 import { Provider } from "react-redux";
 import store from "../app/store";
@@ -19,8 +19,8 @@ test("password should be render", () => {
       <Login />
     </Provider>
   );
-  const passwordInputEl = screen.getByPlaceholderText(/Password/i);
-  expect(passwordInputEl).toBeInTheDocument();
+  const passwordEl = screen.getByPlaceholderText(/Password/i);
+  expect(passwordEl).toBeInTheDocument();
 });
 
 test("button should be render", () => {
@@ -31,4 +31,57 @@ test("button should be render", () => {
   );
   const buttonInputEl = screen.getByRole("button");
   expect(buttonInputEl).toBeInTheDocument();
+});
+
+test("button should be disabled", () => {
+  render(
+    <Provider store={store}>
+      <Login />
+    </Provider>
+  );
+  const buttonInputEl = screen.getByRole("button");
+  expect(buttonInputEl).toBeDisabled();
+});
+
+test("button should not be disabled when inputs are exist", () => {
+  render(
+    <Provider store={store}>
+      <Login />
+    </Provider>
+  );
+  const buttonInputEl = screen.getByRole("button");
+  const userNameEl = screen.getByPlaceholderText(/UserName/i);
+  const passwordInputEl = screen.getByPlaceholderText(/Password/i);
+  const testValue = "test";
+
+  fireEvent.change(userNameEl, { target: { value: testValue } });
+  fireEvent.change(passwordInputEl, { target: { value: testValue } });
+
+  expect(buttonInputEl).not.toBeDisabled();
+});
+
+test("should change username value as user input", () => {
+  render(
+    <Provider store={store}>
+      <Login />
+    </Provider>
+  );
+  const userNameEl = screen.getByPlaceholderText(/UserName/i);
+  const testValue = "test";
+
+  fireEvent.change(userNameEl, { target: { value: testValue } });
+  expect(userNameEl.value).toBe(testValue);
+});
+
+test("should change password value as user input", () => {
+  render(
+    <Provider store={store}>
+      <Login />
+    </Provider>
+  );
+  const passwordEl = screen.getByPlaceholderText(/Password/i);
+  const testValue = "test";
+
+  fireEvent.change(passwordEl, { target: { value: testValue } });
+  expect(passwordEl.value).toBe(testValue);
 });

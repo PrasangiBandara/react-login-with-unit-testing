@@ -39,7 +39,11 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
-        <button disabled={!username || !password} type="submit" className="button">
+        <button
+          disabled={!username || !password}
+          type="submit"
+          className="button"
+        >
           Login
         </button>
       </form>
