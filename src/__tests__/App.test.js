@@ -1,14 +1,27 @@
 import { render, screen } from "@testing-library/react";
-import Login from "../components/Login";
+import App from "../App";
 import { Provider } from "react-redux";
 import store from "../app/store";
 
-test("username should be render", () => {
+test("renders login component in App", () => {
   render(
     <Provider store={store}>
-      <Login />
+      <App />
     </Provider>
   );
-  const userNameEl = screen.getByPlaceholderText(/UserName/i);
-  expect(userNameEl).toBeInTheDocument();
+  
+  const loginComponent = screen.getByTestId("login-component");
+  expect(loginComponent).toBeInTheDocument();
 });
+
+
+// test("renders home component in App", () => {
+//   render(
+//     <Provider store={store}>
+//       <App />
+//     </Provider>
+//   );
+  
+//   const homeComponent = screen.getByTestId("home-component");
+//   expect(homeComponent).toBeInTheDocument();
+// });

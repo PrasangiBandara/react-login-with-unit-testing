@@ -33,7 +33,7 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container" data-testid="login-component">
       <form className="login-form" onSubmit={handleSubmit}>
         <h1>Hello!</h1>
         <h2>Login Here</h2>
