@@ -41,6 +41,7 @@ test("button should be disabled", () => {
   );
   const buttonInputEl = screen.getByRole("button");
   expect(buttonInputEl).toBeDisabled();
+  expect(buttonInputEl.disabled).toBe(true);
 });
 
 test("button should not be disabled when inputs are exist", () => {
