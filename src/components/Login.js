@@ -29,17 +29,17 @@ const Login = () => {
           type="username"
           placeholder="UserName"
           value={username}
-          onChange={(e) => setName.apply(e.target.value)}
+          onChange={(e) => setName(e.target.value)}
         />
         <br />
         <input
           type="password"
           placeholder="Password"
           value={password}
-          onChange={(e) => setPassword.apply(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <br />
-        <button type="submit" className="button">
+        <button disabled={!username || !password} type="submit" className="button">
           Login
         </button>
       </form>
