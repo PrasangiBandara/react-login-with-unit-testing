@@ -33,6 +33,16 @@ test("button should be render", () => {
   expect(buttonInputEl).toBeInTheDocument();
 });
 
+test('available 1 button in login', async () => {
+  render(
+      <Provider store={store}>
+          <Login />
+      </Provider>
+  );
+  const noOfButtons = await screen.findAllByRole('button');
+  expect(noOfButtons).toHaveLength(1);
+});
+
 test("button should be disabled", () => {
   render(
     <Provider store={store}>

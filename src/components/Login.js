@@ -13,13 +13,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!username && !password) {
-      setErrorMessage("Please enter username and password");
-    } else if (!username) {
-      setErrorMessage("Please enter the username");
-    } else if (!password) {
-      setErrorMessage("Please enter the password");
-    } else {
+    if (username && password) {
       setErrorMessage("");
 
       dispatch(
